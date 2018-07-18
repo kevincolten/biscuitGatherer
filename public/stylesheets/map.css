@@ -1,0 +1,178 @@
+html, body, #map {
+    width:100%;
+    height:96%;
+    margin:0;
+    padding:0;
+    font-family: "comfortaa";
+    background-image:url("../images/what-the-hex-dark.png");
+}
+/* .get-markers {
+    width:100%;
+    margin:10px 0;
+} */
+header{
+    /*display: flex;*/
+    /*justify-content: center;*/
+    width:100%;
+    height:10em;
+    background-image:url("../images/what-the-hex-dark.png");
+    /*z-index:0;*/
+    /*color:red;*/
+    margin:0;
+    /*color: black;*/
+    /*opacity: .9;*/
+    /*background-color: transparent;*/
+}
+#navBar{
+    display: flex;
+    align-items: center;
+
+    background-image:url("../images/what-the-hex-dark.png");
+
+    color:white;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+.navbar-light .navbar-nav .nav-link:hover {
+    color: white;
+}
+
+.dropdown-item a{
+    color: black;
+    z-index: 1000;
+}
+#iconAndText{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* span placements should be here...probably could have put it in an li, but...works for now! :) */
+span,i{
+    /*position:absolute;*/
+    margin: 2px;
+    top: 0%;
+    right:7%;
+    color:red;
+    /*margin:1em;*/
+}
+
+#geo{
+    /*position:absolute;*/
+    top:15%;
+    right:2%;
+}
+#locate-position{
+    display: flex;
+}
+#title{
+    align-items: center;
+    justify-content: center;
+    /*margin-left:43em;*/
+    margin-top:-1em;
+    width:10em;
+    height:10em;
+}
+ul,li{
+    list-style: none;
+}
+/*li:hover{*/
+/*transform:scale(1.5);   */
+/*}*/
+img{
+    width:5em;
+    height:5em;
+    margin-left:.5em;
+    margin-top:2.5em;
+}
+
+
+.sidenav {
+    display:flex;
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    /*z-index: 1;*/
+    top: 0;
+    left: 0;
+    background-image:url("../images/what-the-hex.png");
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    -webkit-box-shadow: 20px 3px 47px 3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 20px 3px 47px 3px rgba(0,0,0,0.75);
+    box-shadow: 20px 3px 47px 3px rgba(0,0,0,0.75);
+    z-index:1000;
+}
+
+.sidenav a {
+    display:flex;
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 1.75em;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    margin:1em;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: .5em;
+    font-size: 36px;
+
+}
+
+.placeholders{
+    width:10em;
+    height:10em;
+    border-radius:100%;
+    background-color:whitesmoke;
+    /* -webkit-box-shadow: 20px 3px 47px 3px rgba(0,0,0,0.75);
+-moz-box-shadow: 20px 3px 47px 3px rgba(0,0,0,0.75); */
+    /*box-shadow: 2px 2px 9px 1px rgba(0,0,0,0.75);*/
+    margin:1em;
+
+}
+.leaflet-top:nth-child(1) > div:nth-child(1){
+    display:none;
+}
+.leaflet-popup-content >h1{
+    border-bottom: 3px solid orange;
+    opacity:.5;
+}
+
+
+textarea{
+    border:none;
+    background-color:transparent;
+    resize:none;
+}
+
+
+.container {
+    background-color:transparent;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
