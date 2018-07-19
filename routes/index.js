@@ -15,7 +15,7 @@ router.get('/profile', function(req, res, next) {
     if (error) {
       return next(error);
     } else {
-      return res.render('profile', { title: 'Profile', name: user.name, favorite: user.favoriteBook });
+      return res.render('profile', { title: 'Profile', name: user.name, favorite: user.favoriteSkater });
     }
   });
 });
@@ -68,7 +68,7 @@ router.get('/register', mid.loggedOut, function(req, res, next) {
 router.post('/register', function(req, res, next) {
   if (req.body.email &&
     req.body.name &&
-    req.body.favoriteBook &&
+    req.body.favoriteSkater &&
     req.body.password &&
     req.body.confirmPassword) {
 
@@ -83,7 +83,7 @@ router.post('/register', function(req, res, next) {
     var userData = {
       email: req.body.email,
       name: req.body.name,
-      favoriteBook: req.body.favoriteBook,
+      favoriteSkater: req.body.favoriteSkater,
       password: req.body.password
     };
 
