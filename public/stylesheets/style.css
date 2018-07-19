@@ -32,10 +32,14 @@ ul,li{
     width:25em;
     height:15em;
 }
+#video{
+    height: 13em; !important;
+    width: 13em; !important;
+}
 /* MEDIA STYLING  */
 img{
-    width:10em;
-    height:10em;
+    width:3em;
+    height:3em;
     background-color:transparent;
 }
 video{
@@ -49,11 +53,9 @@ video{
     z-index: -100;
 }
 /* END MEDIA STYLING */
-
 .main.container1{
     /*height: ;*/
 }
-
 /* LOG IN FORM  */
 .container1{
     background-color: rgba(255,255,255,0.5);
@@ -73,9 +75,7 @@ video{
 }
 #createAccount{
     text-align: center;
-
 }
-
 input,a{
     margin:10px;
 }
@@ -90,16 +90,19 @@ footer{
     color:white;
 }
 
-
 /*here is new stuff*/
-
 
 body {
     /*background: #1d2a33 url('../images/skate.mp4') no-repeat;*/
     background-size: cover;
 }
+
 h1{
     width:150%;
+}
+h2{
+    text-wrap: none;
+    width:15em;
 }
 a:hover {
     color: rgba(49,176,213, .7);
@@ -197,7 +200,7 @@ a:hover {
     padding: .5rem;
 }
 .avatar {
-    width: 35px;
+    /*width: 35px;*/
     margin-right: 18px;
     border: solid 2px rgba(255,255,255, .75);
 }
@@ -217,7 +220,7 @@ a:hover {
     color: initial;
 }
 
-.favorite-book {
+.favorite-Book {
     margin-top: 30px;
 }
 

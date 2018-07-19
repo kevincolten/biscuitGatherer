@@ -1,28 +1,39 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var session = require('express-session')
+var session = require('express-session');
+// var MongoStore = require('connect-mongo')(session);
 var app = express();
 
-//use sessions for tracking logins
-app.use(session({
-  secret: 'SpotHunter is you friend',
-  resave: true,
-  saveUninitialized: false
-}));
 
-// mongoose.connect("mongodb://localhost:27017/bookworm", function(err) {
-//   if (err)
-//     return console.error(err);
-// });
+
+// mongodb connection
 mongoose.connect("mongodb://jon:bizket1@ds121341.mlab.com:21341/spothuntertest", {
 
 });
 // mongoose.connect("mongodb://JonLaur:testbase1@ds125821.mlab.com:25821/spothuntertest", {
 //
 // });
+
+
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+// use sessions for tracking logins
+app.use(session({
+  secret: 'treehouse loves you',
+  resave: true,
+  saveUninitialized: false,
+  // store: new MongoStore({
+  //   mongooseConnection: db
+  // })
+}));
+
+// make user ID available in templates
+app.use(function (req, res, next) {
+  res.locals.currentUser = req.session.userId;
+  next();
+});
 // parse incoming requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -56,6 +67,6 @@ app.use(function(err, req, res, next) {
 });
 
 // listen on port 3000
-app.listen(3001, function () {
+app.listen(3000, function () {
   console.log('Express app listening on port 3000');
 });
