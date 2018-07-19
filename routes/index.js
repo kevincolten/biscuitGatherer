@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
+var Spot = require('../models/spot');
 var mid = require('../middleware');
 
 // GET /profile
@@ -118,6 +119,36 @@ router.get('/about', mid.requiresLogin,  function(req, res, next) {
 router.get('/contact', function(req, res, next) {
   return res.render('contact', { title: 'Contact' });
 });
+
+//GET / map
+router.get('/map', mid.requiresLogin, function(req, res, next) {
+  return res.render('map', { title: 'SpotHunter'})
+});
+
+
+// Form / map
+router.post('/spotForm', function(req, res, next) {
+  // return res.send("somestuff");
+  console.log("here I am");
+  var spotData = {
+    spotName: req.body.spotName,
+    location: req.body.location,
+    comment: req.body.comment,
+    pics: req.body.pics,
+    spotUser: req.body.spotUser
+  };
+  // use schema create method to insert documents into Mongo
+  Spot.create(spotData, function (err, spot) {
+    if (err) {
+      return next(err);
+    }else{
+      //this should redirect to the map page
+      return res.redirect('/map');
+    }
+  });
+});
+
+
 
 module.exports = router;
 

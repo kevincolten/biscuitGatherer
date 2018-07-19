@@ -66,3 +66,7 @@ Temporary Items
 
 # vim temp files
 *.swp
+
+#ide's
+.idea/
+.vscode/

@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 
 let SpotSchema = new mongoose.Schema({
 
-  name: {
+  spotName: {
     type: String,
     trim: true,
   },
@@ -15,7 +15,7 @@ let SpotSchema = new mongoose.Schema({
   pics: {
     type: String,
   },
-  user: {
+  spotUser: {
     type: String,
   },
 });
