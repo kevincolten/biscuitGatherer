@@ -217,11 +217,13 @@ a:hover {
     color: rgba(0,0,0, .35);
 }
 .options .material-icons:hover {
-    color: initial;F
+    color: initial;
 }
 
-.favorite-Skater {
+.favorite-Book {
+    z-index: 1000;
     margin-top: 30px;
+    color: pink;
 }
 
 /* Media Queries */

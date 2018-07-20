@@ -16,7 +16,7 @@ router.get('/profile', function(req, res, next) {
     if (error) {
       return next(error);
     } else {
-      return res.render('profile', { title: 'Profile', name: user.name, favorite: user.favoriteSkater });
+      return res.render('profile', { title: 'Profile', name: user.name, favorite: user.favoriteSkater, location: user.location });
     }
   });
 });
@@ -138,7 +138,7 @@ router.post('/spotForm', function(req, res, next) {
     spotUser: req.body.spotUser
   };
   // use schema create method to insert documents into Mongo
-  Spot.create(spotData, function (err, spot) {
+  User.update(spotData, function (err, spot) {
     if (err) {
       return next(err);
     }else{
@@ -147,7 +147,21 @@ router.post('/spotForm', function(req, res, next) {
     }
   });
 });
-
+router.get('/map', function(req, res, next) {
+  if (! req.session.userId ) {
+    var err = new Error("You are not authorized to view this page.");
+    err.status = 403;
+    return next(err);
+  }
+  User.findById(req.session.userId)
+  .exec(function (error, user) {
+    if (error) {
+      return next(error);
+    } else {
+      return res.render('map', { title: 'SpotHunter', spotLocal: user.location });
+    }
+  });
+});
 
 
 module.exports = router;

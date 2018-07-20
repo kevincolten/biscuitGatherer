@@ -21,7 +21,23 @@ var UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  spotName: {
+    type: String,
+    trim: true,
+  },
+  location: {
+    type: String,
+  },
+  comment: {
+    type: String,
+  },
+  pics: {
+    type: String,
+  },
+  spotUser: {
+    type: String,
+  },
 });
 // authenticate input against database documents
 UserSchema.statics.authenticate = function(email, password, callback) {
