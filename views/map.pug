@@ -80,7 +80,7 @@ header
       L.marker([30.45672010958028, -97.78756856918335]).bindPopup("Jongers Barracks").addTo(locations),
         L.marker([30.38957219379311, -97.88230419158936]).bindPopup('The land of Laur').addTo(locations),
         L.marker([30.26593619644542, -97.75179862976074]).bindPopup('The enchanted Hall of Ideas').addTo(locations),
-        L.marker([30.421602277410972, -97.84548282623291]).bindPopup('The grinding wheel').addTo(locations);
+        L.marker([30.277954850453327, -97.64236450195314]).bindPopup('The grinding wheel').addTo(locations);
       var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
         '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
         'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -163,7 +163,7 @@ header
           "coordinates": [-104.99404, 39.75621]
         }
       };
-      L.geoJSON(geojsonFeature).addTo(map);
+      L.geoJSON(User.location.toString()).addTo(map);
 
 
 
