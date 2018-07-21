@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var Json = require('../models/geo');
 var User = require('../models/user');
 var Spot = require('../models/spot');
 var mid = require('../middleware');
@@ -163,6 +164,14 @@ router.get('/map', function(req, res, next) {
   });
 });
 
+
+ router.get('/newmap/:spotUser', function(req, res){
+   if(req.params.spotUser){
+     Spot.find({spotUser: req.params.spotUser}, {}, function (err, docs){
+       res.json(docs);
+     })
+   }
+ });
 
 module.exports = router;
 

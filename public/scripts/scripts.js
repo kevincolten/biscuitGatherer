@@ -102,7 +102,7 @@ window.onload = function () {
     },
     "geometry": {
       "type": "Point",
-      "coordinates": []
+      "coordinates": [-98.06530970143716, 30.288565739758774, -97.90324424356912, 30.26008090413479]
     }
   };
   L.geoJSON(geojsonFeature).addTo(map);
