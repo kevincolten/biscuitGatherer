@@ -8,9 +8,12 @@ var app = express();
 
 
 // mongodb connection
-mongoose.connect("mongodb://jon:bizket1@ds121341.mlab.com:21341/spothuntertest", {
+mongoose.connect("mongodb://jon:bizket1@ds143451.mlab.com:43451/leaflet_map", {
 
 });
+// mongoose.connect("mongodb://jon:bizket1@ds121341.mlab.com:21341/spothuntertest", {
+//
+// });
 // mongoose.connect("mongodb://JonLaur:testbase1@ds125821.mlab.com:25821/spothuntertest", {
 //
 // });
@@ -21,7 +24,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // use sessions for tracking logins
 app.use(session({
-  secret: 'treehouse loves you',
+  secret: 'Bizkets Loves You',
   resave: true,
   saveUninitialized: false,
   // store: new MongoStore({
