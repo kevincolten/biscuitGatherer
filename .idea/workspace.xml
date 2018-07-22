@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb617d88-000f-4a7e-8a7c-05a8a9e8905b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/public/scripts/scripts.js" afterPath="$PROJECT_DIR$/public/scripts/scripts.js" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change beforePath="$PROJECT_DIR$/views/layout.pug" afterPath="$PROJECT_DIR$/views/layout.pug" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/views/map.pug" afterPath="$PROJECT_DIR$/views/map.pug" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -64,10 +62,10 @@
       <file leaf-file-name="map.pug" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/map.pug">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3182">
-              <caret line="101" column="0" lean-forward="true" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+            <state relative-caret-position="360">
+              <caret line="126" column="90" lean-forward="false" selection-start-line="126" selection-start-column="90" selection-end-line="126" selection-end-column="90" />
               <folding>
-                <marker date="1532274297962" expanded="true" signature="4610:4616" ph="©" />
+                <marker date="1532275127679" expanded="true" signature="4610:4616" ph="©" />
               </folding>
             </state>
           </provider>
@@ -191,8 +189,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="14" />
-    <option name="y" value="1113" />
+    <option name="x" value="56" />
+    <option name="y" value="1251" />
     <option name="width" value="1910" />
     <option name="height" value="1016" />
   </component>
@@ -325,15 +323,15 @@
       <workItem from="1532220058387" duration="4041000" />
       <workItem from="1532231096443" duration="3289000" />
       <workItem from="1532234481258" duration="1075000" />
-      <workItem from="1532263186949" duration="10720000" />
+      <workItem from="1532263186949" duration="11500000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99858000" />
+    <option name="totallyTimeSpent" value="100638000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="14" y="1113" width="1910" height="1016" extended-state="0" />
+    <frame x="56" y="1251" width="1910" height="1016" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12513256" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -700,10 +698,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/map.pug">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3182">
-          <caret line="101" column="0" lean-forward="true" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+        <state relative-caret-position="360">
+          <caret line="126" column="90" lean-forward="false" selection-start-line="126" selection-start-column="90" selection-end-line="126" selection-end-column="90" />
           <folding>
-            <marker date="1532274297962" expanded="true" signature="4610:4616" ph="©" />
+            <marker date="1532275127679" expanded="true" signature="4610:4616" ph="©" />
           </folding>
         </state>
       </provider>
