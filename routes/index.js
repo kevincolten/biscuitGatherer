@@ -167,7 +167,7 @@ router.get('/map', function(req, res, next) {
 
  router.get('/mapjson/:name', function(req, res){
    if(req.params.name){
-     Json.find({name: req.params.name}, {}, function (err, docs){
+     Json.findOne({name: req.params.name}, {}, function (err, docs){
        res.json(docs);
      })
    }
@@ -178,15 +178,15 @@ router.get('/maplayers', function (req, res) {
   });
 });
 
-router.get('/map', function(req,res) {
-  Json.find({},{}, function(e,docs){
-    res.render('map', {
-      "jmap" : docs,
-      lat : 40.78854,
-      lng : -73.96374
-    });
-  });
-});
+// router.get('/map', function(req,res) {
+//   Json.find({},{}, function(e,docs){
+//     res.render('map', {
+//       "jmap" : docs,
+//       lat : 30.26008090413479,
+//       lng : -97.90324424356912
+//     });
+//   });
+// });
 
 
 module.exports = router;
