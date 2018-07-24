@@ -96,11 +96,11 @@ img{
     flex-direction:column;
     justify-content: flex-start;
     align-items: center;
-    height: 100%;
-    width: 0;
+    height: 0;
+    width: 100%;
     position: fixed;
     /*z-index: 1;*/
-    top: 0;
+    bottom: 0;
     left: 0;
     background-image:url("../images/what-the-hex.png");
     overflow-x: hidden;
@@ -137,7 +137,60 @@ img{
     font-size: 36px;
 
 }
+ul{
+    display:flex;
+    flex-direction:row;
+}
+.sideprofile {
+    display:flex;
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 0;
+    width: 100%;
+    position: fixed;
+    /*z-index: 1;*/
+    bottom: 0;
+    left: 0;
+    background-image:url("../images/what-the-hex.png");
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    -webkit-box-shadow: 20px 3px 47px 3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 20px 3px 47px 3px rgba(0,0,0,0.75);
+    box-shadow: 20px 3px 47px 3px rgba(0,0,0,0.75);
+    z-index:1000;
+}
 
+.sideprofile a {
+    display:flex;
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 1.75em;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    margin:1em;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: .5em;
+    font-size: 36px;
+
+}
+ul{
+    display:flex;
+    flex-direction:row;
+}
 .placeholders{
     width:10em;
     height:10em;
@@ -168,6 +221,53 @@ textarea{
 .container {
     background-color:transparent;
 }
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+/* Style the close button */
+.topright {
+    float: right;
+    cursor: pointer;
+    font-size: 28px;
+}
+
+.topright:hover {color: red;}
 
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}

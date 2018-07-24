@@ -46,12 +46,31 @@ header
                     .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
                         a.dropdown-item(href='#') Action
                         a.dropdown-item(href='#') Another action
-                        a.dropdown-item(href='#') Something else here
+                        a.dropdown-item(onclick='toggleProfile()' href='#') Something else here
                         a.dropdown-item(onclick='toggleNav() ' href='#') Drop A marker
                         a#locate-position.dropdown-item(href='#')  Current Positon
 
 #map
-#mySidenav.sidenav
+#mySidenav.sideprofile
+  img.placeholders(src='images/vect.png')
+  h6 YOUR FEED
+  Click on the x button in the top right corner to close the current tab:
+  .tab
+  button#defaultOpen.tablinks(onclick="openCity(event, 'London')") London
+  button.tablinks(onclick="openCity(event, 'Paris')") Paris
+  button.tablinks(onclick="openCity(event, 'Tokyo')") Tokyo
+#London.tabcontent
+  span.topright(onclick="this.parentElement.style.display='none'") &times
+  h3 London
+  p London is the capital city of England.
+#Paris.tabcontent
+  span.topright(onclick="this.parentElement.style.display='none'") &times
+  h3 Paris
+  p Paris is the capital of France.
+#Tokyo.tabcontent
+  span.topright(onclick="this.parentElement.style.display='none'") &times
+  h3 Tokyo
+  p Tokyo is the capital of Japan.nav
     button.close(type='button' onclick='closeNav()') &times;
     img.placeholders(src='images/vect.png')
     ul
@@ -232,10 +251,25 @@ header
 
       function toggleNav() {
         var element = document.getElementById("mySidenav");
-        if (element.style.width == "250px") {
-          element.style.width = "0px";
+        if (element.style.height== "250px") {
+          element.style.height = "0px";
         } else {
-          element.style.width = "250px";
+          element.style.height= "250px";
+        }
+      }
+      //- function openNav() {
+      //-   document.getElementById("mySidenav").style.width = "250px";
+      //- }
+      //- function closeNav() {
+      //-   document.getElementById("mySidenav").style.width = "0";
+      //- }
+
+      function toggleProfile() {
+        var element = document.getElementById("mySidenav");
+        if (element.style.height== "80%") {
+          element.style.height = "0px";
+        } else {
+          element.style.height= "80%";
         }
       }
       function openNav() {
@@ -244,12 +278,19 @@ header
       function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
       }
-
-
-
-
-
-
+      function openCity(evt, cityName) {
+        let i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+       for (i = 0; i < tablinks.length; i++) {
+       tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+        }
 
 
 
