@@ -42,45 +42,58 @@ header
             ul
                 li.nav-item.dropdown
                     a#navbarDropdownMenuLink.nav-link.dropdown-toggle.mr-sm-2(href='#' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-                        | Dropdown link
+                        | DASHBOARD
                     .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
-                        a.dropdown-item(href='#') Action
-                        a.dropdown-item(href='#') Another action
-                        a.dropdown-item(onclick='toggleProfile()' href='#') Something else here
+                        a.dropdown-item(data-toggle='modal', data-target='#myModal') Swag Spots
+                        a.dropdown-item(onclick='toggleProfile()' href='#') Profile
                         a.dropdown-item(onclick='toggleNav() ' href='#') Drop A marker
                         a#locate-position.dropdown-item(href='#')  Current Positon
+.container
+  
+  // Modal
+  #myModal.modal.fade(role='dialog')
+    .modal-dialog
+      h2 SWAG SPOTS
+      p Swag Spots are locations that have mystery goodies from our sponsors. Any Spot marked with a 
+      p Spothunter icon logo is a Swag Spot. Once you find it, don't forget to mark it off on the map
+      p and show it off on your feed! There are swag spots all around the city every week, so don't
+      p don't worry if you can't find one...there will always be more! 
+        .modal-header
+          button.close(type='button', data-dismiss='modal') ×
+        .modal-footer
+          button.btn.btn-default(type='button', data-dismiss='modal') Close
 
 #map
 #mySidenav.sideprofile
-
-  .card(style='width: 18rem;')
-      img.card-img-top(src='/images/vect.png', alt='Card image cap')
+  .card(style='width: 20%')
+        img.avatar.img-circle.hidden-xs-down(src='/images/avatar.png', alt='avatar')
   .card-body
    h5.card-title 
       small.card-text ONLINE
       ul.list-group.list-group-flush
-      li.list-group-item SKATE-SET UP
+      li.list-group-item INVITE FRIEND TO SKATE
       li.list-group-item FAVORITE SPOTS
-      li.list-group-item LOOKING FOR...
+      li.list-group-item ASK FOR SWAG
       li.list-group-item(href='#') SETTINGS
-      li.list-group-item(href='#') LOGOUT
+      a(href='logout') Log out
+
+
+
 
 #mySidenav.sidenav
-    ul
-        p
-            | Choose an Icon that represents the spot you found, then tap anywhere on the map to place it!
+    ul  
         li#hRail(data-title='icons')
-            img.icon(src='images/handrail.png')
+            img.icon(src='/images/handrail.png')
         li#shop(data-title='icons')
-            img.icon(src='images/shop.png')
+            img.icon(src='/images/shop.png')
         li#bench(data-title='icons')
-            img.icon(src='images/bench.png')
+            img.icon(src='/images/bench.png')
         li#stairs(data-title='icons')
-            img.icon(src='images/stairs.png')
+            img.icon(src='/images/stairs.png')
         li#sPark(data-title='icons')
-            img.icon(src='images/park.png')
+            img.icon(src='/images/park.png')
         li#hPipe(data-title='icons')
-            img.icon(src='images/halfPipe.png')
+            img.icon(src='/images/halfPipe.png')
     script.
       function toggleNav() {
         var element = document.getElementById("mySidenav");
@@ -111,20 +124,4 @@ header
       function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
       }
-      function openCity(evt, cityName) {
-        let i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-       for (i = 0; i < tablinks.length; i++) {
-       tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-      document.getElementById(cityName).style.display = "block";
-      evt.currentTarget.className += " active";
-        }
-
-
-
-
+  
