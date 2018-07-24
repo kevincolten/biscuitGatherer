@@ -52,27 +52,20 @@ header
 
 #map
 #mySidenav.sideprofile
-  img.placeholders(src='images/vect.png')
-  h6 YOUR FEED
-  Click on the x button in the top right corner to close the current tab:
-  .tab
-  button#defaultOpen.tablinks(onclick="openCity(event, 'London')") London
-  button.tablinks(onclick="openCity(event, 'Paris')") Paris
-  button.tablinks(onclick="openCity(event, 'Tokyo')") Tokyo
-#London.tabcontent
-  span.topright(onclick="this.parentElement.style.display='none'") &times
-  h3 London
-  p London is the capital city of England.
-#Paris.tabcontent
-  span.topright(onclick="this.parentElement.style.display='none'") &times
-  h3 Paris
-  p Paris is the capital of France.
-#Tokyo.tabcontent
-  span.topright(onclick="this.parentElement.style.display='none'") &times
-  h3 Tokyo
-  p Tokyo is the capital of Japan.nav
-    button.close(type='button' onclick='closeNav()') &times;
-    img.placeholders(src='images/vect.png')
+
+  .card(style='width: 18rem;')
+      img.card-img-top(src='/images/vect.png', alt='Card image cap')
+  .card-body
+   h5.card-title 
+      small.card-text ONLINE
+      ul.list-group.list-group-flush
+      li.list-group-item SKATE-SET UP
+      li.list-group-item FAVORITE SPOTS
+      li.list-group-item LOOKING FOR...
+      li.list-group-item(href='#') SETTINGS
+      li.list-group-item(href='#') LOGOUT
+
+#mySidenav.sidenav
     ul
         p
             | Choose an Icon that represents the spot you found, then tap anywhere on the map to place it!
@@ -89,166 +82,6 @@ header
         li#hPipe(data-title='icons')
             img.icon(src='images/halfPipe.png')
     script.
-
-      var mapOptions = {
-        center: [17.342761, 78.552432],
-        zoom: 5
-      }
-
-
-
-      var locations = L.layerGroup();
-        L.marker([30.45672010958028, -97.78756856918335]).bindPopup("Jongers Barracks").addTo(locations),
-        L.marker([30.38957219379311, -97.88230419158936]).bindPopup('The land of Laur').addTo(locations),
-        L.marker([30.26593619644542, -97.75179862976074]).bindPopup('The enchanted Hall of Ideas').addTo(locations),
-        L.marker([30.421602277410972, -97.84548282623291]).bindPopup('The grinding wheel').addTo(locations);
-
-
-      var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
-      mbUrl1 = 'https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png';
-
-      //tutorial
-      $.getJSON('/maplayers', function (result) {
-        $.each(result, function (i, mlayer) {
-          $.getJSON('/mapjson/' + mlayer.name, function (data) {
-            addLayer(data, mlayer.name)
-          });
-        });
-      });
-
-      var MarkerIcon = L.Icon.extend({
-        options: {
-          iconSize: [80, 80],
-          iconAnchor: [22, 94],
-          popupAnchor: [-3, -76],
-          draggable: true
-        }
-      });
-      var handRailIcon = new MarkerIcon({iconUrl: "images/handrail.png"});
-
-      // L.icon = function (options) {
-      //   return new L.icon(options)
-      // }
-
-      // views/map.pug part 3
-      function addLayer(layer, name) {
-        var leaf_layer;
-
-        if (layer.type == "Point") {
-          leaf_layer = L.geoJson(layer, {
-            pointToLayer: function (feature, latlng) {
-              return L.marker(latlng, {icon: handRailIcon});
-            }
-          })
-          leaf_layer.bindPopup("Hi Laur! This app is gonna be SO AWESOME! and we are gonna go FAR!!! Call me if your STOKED!!!! ");
-          //Coors Field
-
-        }else if (layer.type == "MultiLineString") {
-          leaf_layer = L.geoJson(layer, {style: layer.style});
-          leaf_layer.bindPopup(layer.type);
-        } else {
-          leaf_layer = L.geoJson(layer, {
-            style: function (feature) {
-              switch (feature.properties.style) {
-                case 'Orange':
-                  return {color: "#ff0000"};
-                case 'Blue':
-                  return {color: "#0000ff"};
-              }
-            },
-            onEachFeature: function (feature, layer) {
-              layer.bindPopup(feature.properties.name);
-            }
-          });
-        }
-        leaf_layer.addTo(map);
-
-        $('#' + name).click(function (e) {
-
-          if (map.hasLayer(leaf_layer)) {
-            map.removeLayer(leaf_layer);
-          } else {
-            map.addLayer(leaf_layer);
-          }
-        });
-      }
-      //end tutorial
-
-      var grayscale = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
-        streets = L.tileLayer(mbUrl, {id: 'mapbox.streets', attribution: mbAttr});
-        waterColor = L.tileLayer(mbUrl1);
-
-
-      var map = L.map('map', {
-        // center: [39.73, -104.99],
-        zoom: 16,
-        layers: [grayscale, locations],
-        mapOptions
-      }).setView([30.27344, -97.7431], 5);
-
-
-      var baseLayers = {
-        "Grayscale": grayscale,
-        "Streets": streets,
-        "Water": waterColor,
-      };
-
-      var overlays = {
-        "Locations": locations
-      };
-
-      // var videoElement = videoOverlay.getElement();
-      // var map = L.map('map').setView([37, -97.7431], 6).addLayer(osm);
-
-
-      $('.icon').click(function (e) {
-        console.log($(this).attr('src'));
-        iconPath = $(this).attr('src');
-        theIcon = L.icon({
-          iconUrl: iconPath,
-          iconSize: [80, 80], // size of the icon
-          iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-          popupAnchor: [-3, -76],
-          draggable: true // point from which the popup should open relative to the iconAnchor
-        })
-        geojsonFeature.properties.thisIcon.push(iconPath)
-        console.log(iconPath)
-      });
-
-      $('.icon').click(function (e) {
-        console.log()
-      });
-
-      function onMapClick(e) {
-        let userMarkers = [];
-        console.log("youclicked")
-        let marker = L.marker(e.latlng, {
-          icon: theIcon,
-          draggable: true
-
-        }).addTo(map).bindPopup("<form id='popupForm' method='POST' action='/spotForm'> <div class='form-group'><label for='spotName'>Name</label><input type='text'class='form-control' id='spotName' placeholder='Name this spot!' name='spotName'></div><div class='form-group'><label for='location'>Turn on location coordinates</label><input type='text' class='location' id='location' name='location'> <div class='btn-group-toggle' data-toggle='buttons'><label class='btn btn-secondary active'><input class='cords' type='checkbox' checked autocomplete='on'> Checked</label></div><small id='' class='form-text text-muted'>This will generate latlng position of this marker. use this to share between map platforms</small></div><div class='form-group'><label for='comment'></label>Leave a comment about this spot<textarea class='form-control' rows='5'id='comment' placeholder='This spot....' name='comment'></textarea></div><div class='form-group'><label for='pics'>Add some pics</label><button class='form-control' id='pics' onclick='' name='pics'></button></div><div class='form-group'>User<label for='spotUser'></label><input type='text' class='form-control' id='spotUser' placeholder='Leave your userName here' name='spotUser'></div><button type='submit' class='btn btn-primary'>Add Spot Data</button></form>")
-        // $('.cords').click(function(){alert('hi')}));
-        geojsonFeature.geometry.coordinates.push(e.latlng);
-        console.log(geojsonFeature, "hi");
-        // $('.cords').click(function(){
-        // if(!$('.cords').prop('checked'))
-        // console.log('box checked')
-        // document.getElementById('location').innerHTML += "hihihihiihih";
-        // })
-      }
-
-      map.on('click', onMapClick);
-      L.control.layers(baseLayers, overlays).addTo(map);
-      map.on('popupopen', function (e) {
-        var latLng = e["popup"]._latlng;
-        var form = document.querySelector('#popupForm');
-        form['location'].value = latLng['lat'] + ', ' + latLng['lng'];
-      });
-
-
       function toggleNav() {
         var element = document.getElementById("mySidenav");
         if (element.style.height== "250px") {

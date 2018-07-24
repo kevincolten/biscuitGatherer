@@ -27,9 +27,7 @@ header{
 #navBar{
     display: flex;
     align-items: center;
-
     background-image:url("../images/what-the-hex-dark.png");
-
     color:white;
 }
 .navbar-light .navbar-nav .nav-link {
@@ -43,32 +41,30 @@ header{
     color: black;
     z-index: 1000;
 }
-#iconAndText{
-    display: flex;
-    align-items: center;
+/*PROFILE CARDS IN PROFILE TAB */
+.card{
+    display:flex;
     justify-content: center;
+    align-items:center;
+    align-content:center;
+    border:none;
+    background-color:transparent;
 }
-/* span placements should be here...probably could have put it in an li, but...works for now! :) */
-span,i{
-    /*position:absolute;*/
-    margin: 2px;
-    top: 0%;
-    right:7%;
-    color:red;
-    /*margin:1em;*/
+.card-img-top{
+   width:70%;
+   height:70%;
+   /* margin:1em;
+   padding:1em; */
+   border-radius:100%;
+   border:2px solid black;
 }
-.favorite-Book{
-    color: green;
-    z-index: 3000;
+.card-body{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    align-content:center;
 }
-#geo{
-    /*position:absolute;*/
-    top:15%;
-    right:2%;
-}
-#locate-position{
-    display: flex;
-}
+/* END CARD STYLING */
 #title{
     align-items: center;
     justify-content: center;
@@ -89,6 +85,8 @@ img{
     margin-left:.5em;
     margin-top:2.5em;
 }
+
+/*ICON SLIDER*/
 
 
 .sidenav {
@@ -145,7 +143,8 @@ ul{
     display:flex;
     flex-direction:column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
+    padding:5em;
     height: 0;
     width: 100%;
     position: fixed;
@@ -159,9 +158,9 @@ ul{
     -webkit-box-shadow: 20px 3px 47px 3px rgba(0,0,0,0.75);
     -moz-box-shadow: 20px 3px 47px 3px rgba(0,0,0,0.75);
     box-shadow: 20px 3px 47px 3px rgba(0,0,0,0.75);
-    z-index:1000;
+    z-index:100;
 }
-
+/* PROFILE SLIDER */
 .sideprofile a {
     display:flex;
     flex-direction:column;
@@ -221,7 +220,24 @@ textarea{
 .container {
     background-color:transparent;
 }
-body {font-family: Arial;}
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
 
 /* Style the tab */
 .tab {
@@ -256,18 +272,20 @@ body {font-family: Arial;}
 .tabcontent {
     display: none;
     padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
 }
 
-/* Style the close button */
-.topright {
-    float: right;
-    cursor: pointer;
-    font-size: 28px;
+/* Fade in tabs */
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
 
-.topright:hover {color: red;}
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
 
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}

@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
-var Json = require('../models/geo');
-var User = require('../models/user');
-var Spot = require('../models/spot');
-var mid = require('../middleware');
+const express = require('express');
+const router = express.Router();
+const Json = require('../models/geo');
+const User = require('../models/user');
+const Spot = require('../models/spot');
+const mid = require('../middleware');
 
 // GET /profile
 router.get('/profile', function(req, res, next) {
