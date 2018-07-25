@@ -4,7 +4,10 @@ let mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var JsonSchema = new Schema({
   name: String,
-  type: Schema.Types.Mixed
+  type: Schema.Types.Mixed,
+  color: String,
+  style: String,
+  coordinates: [String]
 });
 
 // Mongoose Model definition

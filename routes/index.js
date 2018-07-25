@@ -133,7 +133,9 @@ router.post('/spotForm', function(req, res, next) {
   console.log("here I am");
   var spotData = {
     spotName: req.body.spotName,
-    location: req.body.location,
+    location: {
+      coordinates: req.body.coordinates,
+    },
     comment: req.body.comment,
     pics: req.body.pics,
     spotUser: req.body.spotUser
@@ -163,7 +165,7 @@ router.get('/map', function(req, res, next) {
     }
   });
 });
-
+//userroutes
 
  router.get('/mapjson/:name', function(req, res){
    if(req.params.name){
@@ -172,6 +174,26 @@ router.get('/map', function(req, res, next) {
      })
    }
  });
+router.post("/mapjson/:name",function (req, res, next){
+  let newLocation = {
+    type: req.body.type,
+    name: req.body.name,
+    color: req.body.color,
+    style: req.body.style,
+    coordinates: req.body.coordinates,
+  }
+  Json.create(newLocation, function (err, spot) {
+    if (err) {
+      return next(err);
+    }else{
+      //this should redirect to the map page
+      return res.redirect('/map');
+    }
+  });
+  // Json.push(newUser);
+  // res.json(newUser);
+});
+
 router.get('/maplayers', function (req, res) {
   Json.find({},{'name': 1}, function (err, docs) {
     res.json(docs);
