@@ -45,8 +45,8 @@ header
                         | DASHBOARD
                     .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
                         a.dropdown-item(data-toggle='modal', data-target='#myModal') Swag Spots
-                        a.dropdown-item(onclick='toggleProfile()' href='#') Profile
-                        a.dropdown-item(onclick='toggleNav() ' href='#') Drop A marker
+                        a.dropdown-item(onclick='toggleNav()' href='#') Profile
+                        a.dropdown-item(onclick='toggleProfile() ' href='#') Drop A marker
                         a#locate-position.dropdown-item(href='#')  Current Positon
 .container
   
@@ -80,7 +80,7 @@ header
 
 
 
-#mySidenav.sidenav
+#mySidenavTwo.sidenav
     ul  
         li#hRail(data-title='icons')
             img.icon(src='/images/handrail.png')
@@ -97,10 +97,10 @@ header
     script.
       function toggleNav() {
         var element = document.getElementById("mySidenav");
-        if (element.style.height== "250px") {
+        if (element.style.height== "80%") {
           element.style.height = "0px";
         } else {
-          element.style.height= "250px";
+          element.style.height= "80%";
         }
       }
       //- function openNav() {
@@ -111,11 +111,11 @@ header
       //- }
 
       function toggleProfile() {
-        var element = document.getElementById("mySidenav");
-        if (element.style.height== "80%") {
+          var element = document.getElementById("mySidenav");
+        if (element.style.height== "250px") {
           element.style.height = "0px";
         } else {
-          element.style.height= "80%";
+          element.style.height= "250px";
         }
       }
       function openNav() {
