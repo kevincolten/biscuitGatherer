@@ -91,14 +91,22 @@ header
         mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
       mbUrl1 = 'https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png';
 
-      //tutorial
-      $.getJSON('/maplayers', function (result) {
+      $.getJSON('/ourmaplayers', function (result) {
         $.each(result, function (i, mlayer) {
-          $.getJSON('/mapjson/' + mlayer.name, function (data) {
+          $.getJSON('/ourjson/' + mlayer.name, function (data) {
             addLayer(data, mlayer.name)
           });
         });
       });
+
+      //tutorial
+      // $.getJSON('/maplayers', function (result) {
+      //   $.each(result, function (i, mlayer) {
+      //     $.getJSON('/mapjson/' + mlayer.name, function (data) {
+      //       addLayer(data, mlayer.name)
+      //     });
+      //   });
+      // });
 
       var MarkerIcon = L.Icon.extend({
         options: {
@@ -210,7 +218,7 @@ header
           icon: theIcon,
           draggable: true
 
-        }).addTo(map).bindPopup("<form id='popupForm' method='POST' action='/spotForm'> <div class='form-group'><label for='spotName'>Name</label><input type='text'class='form-control' id='spotName' placeholder='Name this spot!' name='spotName'></div><div class='form-group'><label for='coordinates'>Turn on location coordinates</label><input type='text' class='coordinates' id='coordinates' name='coordinates'> <div class='btn-group-toggle' data-toggle='buttons'><label class='btn btn-secondary active'><input class='cords' type='checkbox' checked autocomplete='on'> Checked</label></div><small id='' class='form-text text-muted'>This will generate latlng position of this marker. use this to share between map platforms</small></div><div class='form-group'><label for='comment'></label>Leave a comment about this spot<textarea class='form-control' rows='5'id='comment' placeholder='This spot....' name='comment'></textarea></div><div class='form-group'><label for='pics'>Add some pics</label><button class='form-control' id='pics' onclick='' name='pics'></button></div><div class='form-group'>User<label for='spotUser'></label><input type='text' class='form-control' id='spotUser' placeholder='Leave your userName here' name='spotUser'></div><button type='submit' class='btn btn-primary'>Add Spot Data</button></form>")
+        }).addTo(map).bindPopup("<form id='popupForm' method='POST' action='/spotForm'> <div class='form-group'><label for='spotName'>Name</label><input type='text'class='form-control' id='spotName' placeholder='Name this spot!' name='spotName'></div><div class='form-group'><label for='coordinates'>Turn on location coordinates</label><input class='coordinates' id='coordinates' name='coordinates'> <div class='btn-group-toggle' data-toggle='buttons'><label class='btn btn-secondary active'><input class='cords' type='checkbox' checked autocomplete='on'> Checked</label></div><small id='' class='form-text text-muted'>This will generate latlng position of this marker. use this to share between map platforms</small></div><div class='form-group'><label for='comment'></label>Leave a comment about this spot<textarea class='form-control' rows='5'id='comment' placeholder='This spot....' name='comment'></textarea></div><div class='form-group'><label for='pics'>Add some pics</label><button class='form-control' id='pics' onclick='' name='pics'></button></div><div class='form-group'>User<label for='spotUser'></label><input type='text' class='form-control' id='spotUser' placeholder='Leave your userName here' name='spotUser'></div><button type='submit' class='btn btn-primary'>Add Spot Data</button></form>")
         // $('.cords').click(function(){alert('hi')}));
         geojsonFeature.geometry.coordinates.push(e.latlng);
         console.log(geojsonFeature, "hi");
@@ -226,7 +234,19 @@ header
       map.on('popupopen', function (e) {
         var latLng = e["popup"]._latlng;
         var form = document.querySelector('#popupForm');
+        //this needs to be a Number!!!!
         form['coordinates'].value = latLng['lat'] + ', ' + latLng['lng'];
+        console.log(form['coordinates'].value)
+        let strings = form['coordinates'].value;
+        let splits = strings.split(',');
+        let first = parseInt(splits[0]);
+        let second = parseInt(splits[1]);
+        let coords = [];
+        coords.push(first)
+        coords.push(second)
+
+        console.log(typeof coords[0])
+
       });
 
 

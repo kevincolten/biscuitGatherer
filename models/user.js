@@ -2,11 +2,19 @@ var  mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var UserSchema = new mongoose.Schema({
 
+  // type: String,
+
   name: {
     type: String,
     required: true,
     trim: true
   },
+  properties:{
+
+  },
+  coordinates: [Number]
+
+  ,
 
   email: {
     type: String,
@@ -40,18 +48,18 @@ var UserSchema = new mongoose.Schema({
   spotUser: {
     type: String,
   },
-  location: {
-
-    type: {
-      type: String, // Don't do `{ location: { type: String } }`
-      enum: ['Point'], // 'location.type' must be 'Point'
-      // required: true
-    },
-    coordinates: {
-      type: [String],
-      required: true
-    }
-  },
+  // location: {
+  //
+  //   type: {
+  //     type: String, // Don't do `{ location: { type: String } }`
+  //     enum: ['Point'], // 'location.type' must be 'Point'
+  //     // required: true
+  //   },
+  //   coordinates: {
+  //     type: [String],
+  //     required: true
+  //   }
+  // },
 });
 // authenticate input against database documents
 UserSchema.statics.authenticate = function(email, password, callback) {
