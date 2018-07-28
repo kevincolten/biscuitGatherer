@@ -6,7 +6,10 @@ block content
       h1.display-4.m-b-2 Sign Up
 
       // register form
-      form(method='POST' action='/register')
+      form(method='POST' enctype='multipart/form-data' action='/register')
+        div.form-group
+          label(for='avatar') avatar:
+          input#name.form-control(type='file',  name='avatar')
         div.form-group
           label(for='name') Name:
           input#name.form-control(type='text', placeholder='first and last' name='name')
@@ -22,4 +25,6 @@ block content
         div.form-group
           label(for='pw2') Confirm Password:
           input#pw2.form-control(type='password' name='confirmPassword')
-        button.btn.btn-primary(type='submit') Sign up
+          button.btn.btn-primary(type='submit') Sign up
+
+          

@@ -191,8 +191,3 @@ router.get('/maplayers', function (req, res) {
 
 module.exports = router;
 
-
-
-
-
-

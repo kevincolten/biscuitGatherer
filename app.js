@@ -1,9 +1,45 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
 var session = require('express-session');
+var mongoose = require('mongoose');
+// var fs = require('fs');
 // var MongoStore = require('connect-mongo')(session);
-var app = express();
+// var multer = require('multer');
+ var app = express();
+
+
+
+// const storage = multer.diskStorage({
+//   destination: './public/uploads/',
+//   filename: function(req, file, cb){
+//     cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+//   }
+// });
+// // Init Upload
+// const upload = multer({
+//   storage: storage,
+//   limits:{fileSize: 1000000},
+//   fileFilter: function(req, file, cb){
+//     checkFileType(file, cb);
+//   }
+// }).single('avatar');
+
+// // File input field name is simply 'file'
+// app.post('/register', upload.single('file'), function(req, res) {
+//   var file = __dirname + '/' + req.file.filename;
+//   fs.rename(req.file.path, file, function(err) {
+//     if (err) {
+//       console.log(err);
+//       res.send(500);
+//     } else {
+//       res.json({
+//         message: 'File uploaded successfully',
+//         filename: req.file.filename
+//       });
+//     }
+//   });
+// });
+
 
 
 
@@ -68,6 +104,23 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+
+
+/// multer
+
+// app.use(multer({ dest: '/uploads’',
+//   rename: function (fieldname, filename) {
+//     return filename;
+//   },
+//  }));
+//  // fs
+//  app.post('./register',function(req,res){
+//   var newItem = new Item();
+//   newItem.img.data = fs.readFileSync(req.files.userPhoto.path)
+//   newItem.img.contentType = 'image/png';
+//   newItem.save();
+//  });
 
 // listen on port 3000
 app.listen(3001, function () {
