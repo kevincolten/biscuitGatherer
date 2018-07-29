@@ -193,6 +193,20 @@ header
       // var map = L.map('map').setView([37, -97.7431], 6).addLayer(osm);
 
 
+      //- $('.icon').click(function (e) {
+      //-   console.log($(this).attr('src'));
+      //-   iconPath = $(this).attr('src');
+      //-   theIcon = L.icon({
+      //-     iconUrl: iconPath,
+      //-     iconSize: [80, 80], // size of the icon
+      //-     iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+      //-     popupAnchor: [-3, -76],
+      //-     draggable: true // point from which the popup should open relative to the iconAnchor
+      //-   })
+      //-   //- geojsonFeature.properties.thisIcon.push(iconPath)
+      //-   console.log(iconPath)
+      //- });
+      let ourGeo = [];
       $('.icon').click(function (e) {
         console.log($(this).attr('src'));
         iconPath = $(this).attr('src');
@@ -201,16 +215,16 @@ header
           iconSize: [80, 80], // size of the icon
           iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
           popupAnchor: [-3, -76],
-          draggable: true // point from which the popup should open relative to the iconAnchor
+          draggable: true, // point from which the popup should open relative to the iconAnchor
+          coordinates:e.latlng
         })
-        geojsonFeature.properties.thisIcon.push(iconPath)
+        ourGeo.push((JSON)(this.toGeoJSON))
+        console.log(typeof ourGeo[0]);
+        //- geojsonFeature.properties.thisIcon.push(iconPath)
         console.log(iconPath)
       });
 
-      $('.icon').click(function (e) {
-        console.log()
-      });
-
+ 
       function onMapClick(e) {
         let userMarkers = [];
         console.log("youclicked")
