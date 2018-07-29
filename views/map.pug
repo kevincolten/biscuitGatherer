@@ -224,20 +224,23 @@ header
         console.log(iconPath)
       });
 
- 
-      function onMapClick(e) {
         let userMarkers = [];
+      function onMapClick(e) {
+
         console.log("youclicked")
         let marker = L.marker(e.latlng, {
           icon: theIcon,
           draggable: true,
           coordinates: e.latlng
 
-        }).addTo(map).bindPopup("<form id='popupForm' method='POST' action='/spotForm'> <div class='form-group'><label for='spotName'>Name</label><input type='text'class='form-control' id='spotName' placeholder='Name this spot!' name='spotName'></div><div class='form-group'><label for='coordinates'>Turn on location coordinates</label><input class='coordinates' id='coordinates' name='coordinates'> <div class='btn-group-toggle' data-toggle='buttons'><label class='btn btn-secondary active'><input class='cords' type='checkbox' checked autocomplete='on'> Checked</label></div><small id='' class='form-text text-muted'>This will generate latlng position of this marker. use this to share between map platforms</small></div><div class='form-group'><label for='comment'></label>Leave a comment about this spot<textarea class='form-control' rows='5'id='comment' placeholder='This spot....' name='comment'></textarea></div><div class='form-group'><label for='pics'>Add some pics</label><button class='form-control' id='pics' onclick='' name='pics'></button></div><div class='form-group'>User<label for='spotUser'></label><input type='text' class='form-control' id='spotUser' placeholder='Leave your userName here' name='spotUser'></div><button type='submit' class='btn btn-primary'>Add Spot Data</button></form>")
+        }).addTo(map).bindPopup("<form id='popupForm' method='POST' action='/spotForm'> <div class='form-group'><label for='spotName'>Name</label><input type='tel'class='form-control' id='spotName' placeholder='Name this spot!' name='spotName'></div><div class='form-group'><label for='coordinates'>Turn on location coordinates</label><input type='text' class='coordinates' id='coordinates' name='coordinates'> <div class='btn-group-toggle' data-toggle='buttons'><label class='btn btn-secondary active'><input class='cords' type='checkbox' checked autocomplete='on'> Checked</label></div><small id='' class='form-text text-muted'>This will generate latlng position of this marker. use this to share between map platforms</small></div><div class='form-group'><label for='comment'></label>Leave a comment about this spot<textarea class='form-control' rows='5'id='comment' placeholder='This spot....' name='comment'></textarea></div><div class='form-group'><label for='pics'>Add some pics</label><button class='form-control' id='pics' onclick='' name='pics'></button></div><div class='form-group'>User<label for='spotUser'></label><input type='text' class='form-control' id='spotUser' placeholder='Leave your userName here' name='spotUser'></div><button type='submit' class='btn btn-primary'>Add Spot Data</button></form>")
         // $('.cords').click(function(){alert('hi')}));
         // geojsonFeature.geometry.coordinates.push(e.latlng);
-        userMarkers.push(this.toGeoJSON);
-        console.log(userMarkers)
+        userMarkers.push(e.latlng.lat, e.latlng.lng);
+        console.log(userMarkers, "array");
+        function displayVal(){
+          var inputs = $('#coordinates').val(userMarkers)
+        }
       }
 
       map.on('click', onMapClick);
@@ -246,17 +249,18 @@ header
         var latLng = e["popup"]._latlng;
         var form = document.querySelector('#popupForm');
         //this needs to be a Number!!!!
-        form['coordinates'].value = latLng['lat'] + ', ' + latLng['lng'];
-        console.log(form['coordinates'].value)
-        let strings = form['coordinates'].value;
-        let splits = strings.split(',');
-        let first = parseInt(splits[0]);
-        let second = parseInt(splits[1]);
-        let coords = [];
-        coords.push(first)
-        coords.push(second)
-
-        console.log(typeof coords[0])
+        // form[Number('coordinates', 'coordinates')] = userMarkers
+          // latLng['lat'] + ', ' + latLng['lng'];
+        // console.log(form['coordinates'].value)
+        // let strings = form['coordinates'].value;
+        // let splits = strings.split(',');
+        // let first = parseInt(splits[0]);
+        // let second = parseInt(splits[1]);
+        // let coords = [];
+        // coords.push(first)
+        // coords.push(second)
+        //
+        console.log(typeof form[Number('coordinates')].value)
 
       });
 

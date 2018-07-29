@@ -12,8 +12,9 @@ var UserSchema = new mongoose.Schema({
   properties:{
 
   },
-  coordinates: [Number]
-
+  coordinates: {
+    type: [Number, Number]
+  }
   ,
 
   email: {
