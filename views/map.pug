@@ -55,8 +55,6 @@ header
     button.close(type='button' onclick='closeNav()') &times;
     img.placeholders(src='images/vect.png')
     ul
-        p
-            | Choose an Icon that represents the spot you found, then tap anywhere on the map to place it!
         li#hRail(data-title='icons')
             img.icon(src='images/handrail.png')
         li#shop(data-title='icons')
@@ -100,13 +98,13 @@ header
       });
 
       //tutorial
-      // $.getJSON('/maplayers', function (result) {
-      //   $.each(result, function (i, mlayer) {
-      //     $.getJSON('/mapjson/' + mlayer.name, function (data) {
-      //       addLayer(data, mlayer.name)
-      //     });
-      //   });
-      // });
+       $.getJSON('/maplayers', function (result) {
+         $.each(result, function (i, mlayer) {
+           $.getJSON('/mapjson/' + mlayer.name, function (data) {
+             addLayer(data, mlayer.name)
+           });
+         });
+       });
 
       var MarkerIcon = L.Icon.extend({
         options: {
@@ -122,49 +120,49 @@ header
       //   return new L.icon(options)
       // }
 
-      // views/map.pug part 3
-      function addLayer(layer, name) {
-        var leaf_layer;
+      //- // views/map.pug part 3
+      //- function addLayer(layer, name) {
+      //-   var leaf_layer;
 
-        if (layer.type == "Point") {
-          leaf_layer = L.geoJson(layer, {
-            pointToLayer: function (feature, latlng) {
-              return L.marker(latlng, {icon: handRailIcon});
-            }
-          })
-          leaf_layer.bindPopup("Hi Laur! ");
-          //Coors Field
+      //-   if (layer.type == "Point") {
+      //-     leaf_layer = L.geoJson(layer, {
+      //-       pointToLayer: function (feature, latlng) {
+      //-         return L.marker(latlng, {icon: handRailIcon});
+      //-       }
+      //-     })
+      //-     leaf_layer.bindPopup("Hi Laur! ");
+      //-     //Coors Field
 
-        }else if (layer.type == "MultiLineString") {
-          leaf_layer = L.geoJson(layer, {style: layer.style});
-          leaf_layer.bindPopup(layer.type);
-        } else {
-          leaf_layer = L.geoJson(layer, {
-            style: function (feature) {
-              switch (feature.properties.style) {
-                case 'Orange':
-                  return {color: "#ff0000"};
-                case 'Blue':
-                  return {color: "#0000ff"};
-              }
-            },
-            onEachFeature: function (feature, layer) {
-              layer.bindPopup(feature.properties.name);
-            }
-          });
-        }
-        leaf_layer.addTo(map);
+      //-   }else if (layer.type == "MultiLineString") {
+      //-     leaf_layer = L.geoJson(layer, {style: layer.style});
+      //-     leaf_layer.bindPopup(layer.type);
+      //-   } else {
+      //-     leaf_layer = L.geoJson(layer, {
+      //-       style: function (feature) {
+      //-         switch (feature.properties.style) {
+      //-           case 'Orange':
+      //-             return {color: "#ff0000"};
+      //-           case 'Blue':
+      //-             return {color: "#0000ff"};
+      //-         }
+      //-       },
+      //-       onEachFeature: function (feature, layer) {
+      //-         layer.bindPopup(feature.properties.name);
+      //-       }
+      //-     });
+      //-   }
+      //-   leaf_layer.addTo(map);
 
-        $('#' + name).click(function (e) {
+      //-   $('#' + name).click(function (e) {
 
-          if (map.hasLayer(leaf_layer)) {
-            map.removeLayer(leaf_layer);
-          } else {
-            map.addLayer(leaf_layer);
-          }
-        });
-      }
-      //end tutorial
+      //-     if (map.hasLayer(leaf_layer)) {
+      //-       map.removeLayer(leaf_layer);
+      //-     } else {
+      //-       map.addLayer(leaf_layer);
+      //-     }
+      //-   });
+      //- }
+      //- //end tutorial
 
       var grayscale = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
         streets = L.tileLayer(mbUrl, {id: 'mapbox.streets', attribution: mbAttr});
@@ -233,51 +231,44 @@ header
           draggable: true,
           coordinates: e.latlng
 
-        }).addTo(map).bindPopup("<form id='popupForm' method='POST' action='/spotForm'> <div class='form-group'><label for='spotName'>Name</label><input type='tel'class='form-control' id='spotName' placeholder='Name this spot!' name='spotName'></div><div class='form-group'><label for='coordinates'>Turn on location coordinates</label><input type='text' class='coordinates' id='lng' name='coordinates'> <input type='text' class='coordinates' id='lat' name='coordinates'><div class='btn-group-toggle' data-toggle='buttons'><label class='btn btn-secondary active'><input class='cords' type='checkbox' checked autocomplete='on'> Checked</label></div><small id='' class='form-text text-muted'>This will generate latlng position of this marker. use this to share between map platforms</small></div><div class='form-group'><label for='comment'></label>Leave a comment about this spot<textarea class='form-control' rows='5'id='comment' placeholder='This spot....' name='comment'></textarea></div><div class='form-group'><label for='pics'>Add some pics</label><button class='form-control' id='pics' onclick='' name='pics'></button></div><div class='form-group'>User<label for='spotUser'></label><input type='text' class='form-control' id='spotUser' placeholder='Leave your userName here' name='spotUser'></div><button type='submit' class='btn btn-primary'>Add Spot Data</button></form>")
+        }).addTo(map).bindPopup("<form id='popupForm' method='POST' action='/spotForm'> <div class='form-group'><label for='spotName'>Name</label><input type='text'class='form-control' id='spotName' placeholder='Name this spot!' name='spotName'></div><div class='form-group'><label for='coordinates'>Turn on location coordinates</label><input type='tel' class='coordinates' id='lng' name='coordinates'> <input type='tel' class='coordinates' id='lat' name='coordinates'><div class='form-group'><label for='comment'></label>Leave a comment about this spot<textarea class='form-control' rows='5'id='comment' placeholder='This spot....' name='comment'></textarea></div><div class='form-group'><label for='pics'>Add some pics</label><button class='form-control' id='pics' onclick='' name='pics'></button></div><div class='form-group'>User<label for='spotUser'></label><input type='text' class='form-control' id='spotUser' placeholder='Leave your userName here' name='spotUser'></div><button type='submit' class='btn btn-primary'>Add Spot Data</button></form>")
         // $('.cords').click(function(){alert('hi')}));
         // geojsonFeature.geometry.coordinates.push(e.latlng);
         userMarkers.push(e.latlng.lng, e.latlng.lat);
         console.log(userMarkers, "array");
-        function displayVal(){
-          var inputs = $('#coordinates').val(userMarkers)
-        }
-      }
+              }
 
       map.on('click', onMapClick);
       L.control.layers(baseLayers, overlays).addTo(map);
-      map.on('popupopen', function (e) {
-        var latLng = e["popup"]._latlng;
-        var form = document.querySelector('#popupForm');
-        //this needs to be a Number!!!!
-        // form[Number('coordinates', 'coordinates')] = userMarkers
-          // latLng['lat'] + ', ' + latLng['lng'];
-        // console.log(form['coordinates'].value)
-        // let strings = form['coordinates'].value;
-        // let splits = strings.split(',');
-        // let first = parseInt(splits[0]);
-        // let second = parseInt(splits[1]);
-        // let coords = [];
-        // coords.push(first)
-        // coords.push(second)
-        //
-        console.log(typeof form[Number('coordinates')].value)
+    
 
+      map.on('popupopen', function (e) {
+     // on the event of the popup opening, the following will happen.
+      const latLng = e["popup"]._latlng;
+     // define the first variable of lat and long and have it relate to the popup
+      const form = document.querySelector('#popupForm');
+     // the second variable is the form 
+      form['lng'].value = latLng['lng']; 
+     // this is where the long should append to 
+      form['lat'].value=latLng['lat'];
+      // this is where the lat should append to
+      
       });
 
 
       function toggleNav() {
         var element = document.getElementById("mySidenav");
-        if (element.style.width == "250px") {
-          element.style.width = "0px";
+        if (element.style.height == "250px") {
+          element.style.height = "0px";
         } else {
-          element.style.width = "250px";
+          element.style.height = "250px";
         }
       }
       function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("mySidenav").style.height = "250px";
       }
       function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("mySidenav").style.height = "0";
       }
 
 

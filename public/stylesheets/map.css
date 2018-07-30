@@ -93,15 +93,12 @@ img{
 
 .sidenav {
     display:flex;
-    flex-direction:column;
+    flex-direction:row;
     justify-content: flex-start;
     align-items: center;
-    height: 100%;
-    width: 0;
-    position: fixed;
+    height: 0;
+    width: 100%;
     /*z-index: 1;*/
-    top: 0;
-    left: 0;
     background-image:url("../images/what-the-hex.png");
     overflow-x: hidden;
     transition: 0.3s;
@@ -110,8 +107,16 @@ img{
     -moz-box-shadow: 20px 3px 47px 3px rgba(0,0,0,0.75);
     box-shadow: 20px 3px 47px 3px rgba(0,0,0,0.75);
     z-index:1000;
-}
+    position:fixed;
+    bottom:0;
 
+}
+ul{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+}
 .sidenav a {
     display:flex;
     flex-direction:column;
@@ -164,9 +169,8 @@ textarea{
     resize:none;
 }
 
-
-.container {
-    background-color:transparent;
+.coordinates{
+    display:none;
 }
 
 @media screen and (max-height: 450px) {
