@@ -129,9 +129,11 @@ router.get('/map', mid.requiresLogin, function(req, res, next) {
 
 // Form / map
 router.post('/spotForm', function(req, res, next) {
+
   // return res.send("somestuff");
   console.log("here I am");
   var spotData = {
+    type: req.body.type,
     spotName: req.body.spotName,
     coordinates: req.body.coordinates,
     comment: req.body.comment,
@@ -152,13 +154,13 @@ router.post('/spotForm', function(req, res, next) {
 // UserRoutes
 router.get('/ourjson/:name', function(req, res){
   if(req.params.name){
-    User.findOne({name: req.params.name}, {}, function (err, docs){
+    Spot.findOne({name: req.params.name}, {}, function (err, docs){
       res.json(docs);
     })
   }
 });
 router.get('/ourmaplayers', function (req, res) {
-  User.find({},{'name': 1}, function (err, docs) {
+  Spot.find({},{'name': 1}, function (err, docs) {
     res.json(docs);
   });
 });

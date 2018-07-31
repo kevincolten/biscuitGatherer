@@ -193,19 +193,20 @@ header
       // var map = L.map('map').setView([37, -97.7431], 6).addLayer(osm);
 
 
-      //- $('.icon').click(function (e) {
-      //-   console.log($(this).attr('src'));
-      //-   iconPath = $(this).attr('src');
-      //-   theIcon = L.icon({
-      //-     iconUrl: iconPath,
-      //-     iconSize: [80, 80], // size of the icon
-      //-     iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-      //-     popupAnchor: [-3, -76],
-      //-     draggable: true // point from which the popup should open relative to the iconAnchor
-      //-   })
-      //-   //- geojsonFeature.properties.thisIcon.push(iconPath)
-      //-   console.log(iconPath)
-      //- });
+       $('.icon').click(function (e) {
+         console.log($(this).attr('src'));
+           iconPath = $(this).attr('src');
+           theIcon = L.icon({
+           iconUrl: iconPath,
+           iconSize: [80, 80], // size of the icon
+           iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+           popupAnchor: [-3, -76],
+           draggable: true // point from which the popup should open relative to the iconAnchor
+         })
+         //- geojsonFeature.properties.thisIcon.push(iconPath)
+        console.log(iconPath)
+       });
+
       let ourGeo = [];
       $('.icon').click(function (e) {
         console.log($(this).attr('src'));
@@ -233,7 +234,7 @@ header
           draggable: true,
           coordinates: e.latlng
 
-        }).addTo(map).bindPopup("<form id='popupForm' method='POST' action='/spotForm'> <div class='form-group'><label for='spotName'>Name</label><input type='tel'class='form-control' id='spotName' placeholder='Name this spot!' name='spotName'></div><div class='form-group'><label for='coordinates'>Turn on location coordinates</label><input type='text' class='coordinates' id='lng' name='coordinates'> <input type='text' class='coordinates' id='lat' name='coordinates'><div class='btn-group-toggle' data-toggle='buttons'><label class='btn btn-secondary active'><input class='cords' type='checkbox' checked autocomplete='on'> Checked</label></div><small id='' class='form-text text-muted'>This will generate latlng position of this marker. use this to share between map platforms</small></div><div class='form-group'><label for='comment'></label>Leave a comment about this spot<textarea class='form-control' rows='5'id='comment' placeholder='This spot....' name='comment'></textarea></div><div class='form-group'><label for='pics'>Add some pics</label><button class='form-control' id='pics' onclick='' name='pics'></button></div><div class='form-group'>User<label for='spotUser'></label><input type='text' class='form-control' id='spotUser' placeholder='Leave your userName here' name='spotUser'></div><button type='submit' class='btn btn-primary'>Add Spot Data</button></form>")
+        }).addTo(map).bindPopup("<form id='popupForm' method='POST' action='/spotForm'> <div class='form-group'><label for='spotName'>Name</label><input type='tel' class='form-control' id='spotName' placeholder='Name this spot!' name='spotName'></div><div class='form-group'><label for='type'>This is the point and will be hidden</label><input type='hidden' class='type' id='Point' name='type'><label for='coordinates'>Turn on location coordinates</label><input type='text' class='coordinates' id='lng' name='coordinates'> <input type='text' class='coordinates' id='lat' name='coordinates'><div class='btn-group-toggle' data-toggle='buttons'><label class='btn btn-secondary active'><input class='cords' type='checkbox' checked autocomplete='on'> Checked</label></div><small id='' class='form-text text-muted'>This will generate latlng position of this marker. use this to share between map platforms</small></div><div class='form-group'><label for='comment'></label>Leave a comment about this spot<textarea class='form-control' rows='5'id='comment' placeholder='This spot....' name='comment'></textarea></div><div class='form-group'><label for='pics'>Add some pics</label><button class='form-control' id='pics' onclick='' name='pics'></button></div><div class='form-group'>User<label for='spotUser'></label><input type='text' class='form-control' id='spotUser' placeholder='Leave your userName here' name='spotUser'></div><button type='submit' class='btn btn-primary'>Add Spot Data</button></form>")
         // $('.cords').click(function(){alert('hi')}));
         // geojsonFeature.geometry.coordinates.push(e.latlng);
         userMarkers.push(e.latlng.lng, e.latlng.lat);
@@ -245,23 +246,38 @@ header
 
       map.on('click', onMapClick);
       L.control.layers(baseLayers, overlays).addTo(map);
-      map.on('popupopen', function (e) {
-        var latLng = e["popup"]._latlng;
-        var form = document.querySelector('#popupForm');
-        //this needs to be a Number!!!!
-        // form[Number('coordinates', 'coordinates')] = userMarkers
-          // latLng['lat'] + ', ' + latLng['lng'];
-        // console.log(form['coordinates'].value)
-        // let strings = form['coordinates'].value;
-        // let splits = strings.split(',');
-        // let first = parseInt(splits[0]);
-        // let second = parseInt(splits[1]);
-        // let coords = [];
-        // coords.push(first)
-        // coords.push(second)
-        //
-        console.log(typeof form[Number('coordinates')].value)
 
+      // map.on('popupopen', function (e) {
+      //   var latLng = e["popup"]._latlng;
+      //   var form = document.querySelector('#popupForm');
+      //   //this needs to be a Number!!!!
+      //   // form[Number('coordinates', 'coordinates')] = userMarkers
+      //     // latLng['lat'] + ', ' + latLng['lng'];
+      //   // console.log(form['coordinates'].value)
+      //   // let strings = form['coordinates'].value;
+      //   // let splits = strings.split(',');
+      //   // let first = parseInt(splits[0]);
+      //   // let second = parseInt(splits[1]);
+      //   // let coords = [];
+      //   // coords.push(first)
+      //   // coords.push(second)
+      //   //
+      //   console.log(typeof form[Number('coordinates')].value)
+      //
+      // });
+      //
+      map.on('popupopen', function (e) {
+
+        // on the event of the popup opening, the following will happen.
+        const latLng = e["popup"]._latlng;
+        // define the first variable of lat and long and have it relate to the popup
+        const form = document.querySelector('#popupForm');
+        // the second variable is the form
+        form['lng'].value = latLng['lng'];
+        // this is where the long should append to
+        form['lat'].value = latLng['lat'];
+        // this is where the lat should append to
+        $('#Point').val("Point")
       });
 
 

@@ -1,8 +1,19 @@
 var  mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
-var UserSchema = new mongoose.Schema({
 
-   type: String,
+
+
+
+
+
+
+
+
+
+
+let UserSchema = new mongoose.Schema({
+
+  type: String,
 
   name: {
     type: String,
@@ -10,12 +21,7 @@ var UserSchema = new mongoose.Schema({
     trim: true
   },
   properties:{
-
   },
-  coordinates: {
-    type: [Number, Number]
-  }
-  ,
 
   email: {
     type: String,
@@ -33,13 +39,14 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+
   spotName: {
     type: String,
     trim: true,
   },
-  // location: {
-  //   type: String,
-  // },
+  coordinates: {
+    type: [Number, Number]
+  },
   comment: {
     type: String,
   },
@@ -48,20 +55,11 @@ var UserSchema = new mongoose.Schema({
   },
   spotUser: {
     type: String,
-  },
-  // location: {
-  //
-  //   type: {
-  //     type: String, // Don't do `{ location: { type: String } }`
-  //     enum: ['Point'], // 'location.type' must be 'Point'
-  //     // required: true
-  //   },
-  //   coordinates: {
-  //     type: [String],
-  //     required: true
-  //   }
-  // },
+  }
+
 });
+
+
 // authenticate input against database documents
 UserSchema.statics.authenticate = function(email, password, callback) {
   User.findOne({email: email})
@@ -93,6 +91,8 @@ UserSchema.pre('save', function(next){
     next();
   })
 });
+
+
 
 var User = mongoose.model('User',  UserSchema);
 module.exports = User;
